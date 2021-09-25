@@ -1,0 +1,1 @@
+Java -jar MyServer-1.0-SNAPSHOT.jar

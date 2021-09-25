@@ -1,0 +1,28 @@
+spring:
+  profile: product
+  application:
+    name: UfoEureka
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: eureka-server
+server:
+  port: 1122
+  #servlet:
+  #  context-path: /product
+eureka:
+  client:
+    service-url::
+      #defaultZone 这个是不会提示的，此处需要自己写
+      #实际上属性应该是service-url,这个属性是个map（key-value）格式；当key是defaultZone的时候才能被解析；所以这里没有提示，
+      #但是自己还需要写一个defaultZone；
+      defaultZone: http://localhost:1122/eureka/
+
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: false
+    #是否从EurekaServer抓取已有的注册消息，默认为true，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: false
+
+  instance:
+    prefer-ip-address: true

@@ -1,0 +1,5 @@
+  default-filters:
+      - name: Hystrix
+        args:
+          name: fallbackcmd
+          fallbackUri: forward:/default-error

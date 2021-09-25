@@ -1,0 +1,1 @@
+Java -jar EurekaServer-1.0-SNAPSHOT.jar

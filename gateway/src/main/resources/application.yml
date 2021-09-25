@@ -1,0 +1,40 @@
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: PC-ApiGateWay
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          #开启小写验证，默认feign根据服务名查找都是用的全大写
+          lowerCaseServiceId: true
+
+      default-filters:
+          - name: Hystrix
+            args:
+             name: myfallback
+             fallbackUri: forward:/defaultfallback
+
+
+# hystrix设置隔离策略为信号量，超时时间为2秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:1122/eureka/
+

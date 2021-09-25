@@ -1,0 +1,10 @@
+default-filters:
+         - name: Hystrix
+		 args:
+		 name: fallbackcmd
+		 fallbackUri: forward:/error/fallback
+		 - name: Retry
+		 args:
+		 retries: 3
+		 statuses: BAD_GATEWAY,BAD_REQUEST
+		 methods: GET,POS
